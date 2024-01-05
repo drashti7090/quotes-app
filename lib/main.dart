@@ -1,20 +1,15 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:quotes_app/splash.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  /// for generate crash
-//   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-//   FirebaseCrashlytics.instance.crash();
+void main() {
+  runApp(const AppMode());
 }
 
 class AppMode extends StatelessWidget {
-  AppMode({super.key});
+  const AppMode({super.key});
 
-  String mode = BuildConfiguration.shared.mode;
 
   @override
   Widget build(BuildContext context) {
@@ -24,61 +19,12 @@ class AppMode extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
       darkTheme: ThemeData.dark(),
-
-      // home: const SplashScreenQuotes(),
+      home: const SplashScreenQuotes(),
 
 
     );
   }
 }
 
-enum Environment {
-  staging,
-  production,
-}
-
-class BuildConfiguration {
-  static final shared = BuildConfiguration();
-
-  late Environment environment;
-
-  Object get baseUrl {
-    switch (environment) {
-      case Environment.staging:
-        return "";
-      case Environment.production:
-        return "";
-    }
-  }
-
-  String get socketUrl {
-    switch (environment) {
-      case Environment.staging:
-        return "";
-      case Environment.production:
-        return "";
-    }
-  }
-
-  String get mode {
-    switch (environment) {
-      case Environment.staging:
-      // return "TEST";
-        return "1234567890";
-      case Environment.production:
-      // return "PROD";
-        return "0987654321";
-    }
-  }
-
-  String get youtubeId {
-    switch (environment) {
-      case Environment.staging:
-        return "dTu5dTEzVM4";
-      case Environment.production:
-        return "Njyx5ZuwEHI";
-    }
-  }
-}
 
 
